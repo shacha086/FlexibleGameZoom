@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlexibleGameScale", "FlexibleGameScale\FlexibleGameScale.csproj", "{106C2689-4B61-47B0-A4D9-6165FAE75BA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlexibleGameZoom", "FlexibleGameZoom\FlexibleGameZoom.csproj", "{106C2689-4B61-47B0-A4D9-6165FAE75BA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -6,7 +6,7 @@ using StardewModdingAPI.Events;
 using StardewValley;
 using StardewValley.Menus;
 
-namespace FlexibleGameScale;
+namespace FlexibleGameZoom;
 
 public class ModEntry : Hack<ModEntry>
 {

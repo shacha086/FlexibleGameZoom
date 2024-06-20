@@ -1,10 +1,10 @@
 {
-  "Name": "FlexibleGameScale",
+  "Name": "FlexibleGameZoom",
   "Author": "shacha",
   "Version": "1.0.0",
-  "UniqueID": "shacha.FlexibleGameScale",
+  "UniqueID": "shacha.FlexibleGameZoom",
   "Description": "",
-  "EntryDll": "FlexibleGameScale.dll",
+  "EntryDll": "FlexibleGameZoom.dll",
   "MinimumApiVersion": "4.0.0",
   "UpdateKeys": []
 }
