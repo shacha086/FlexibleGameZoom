@@ -17,8 +17,8 @@ public class ModEntry : Hack<ModEntry>
     {
         modHelper.ConsoleCommands.Add("dbg", "", OnDebugCommand);
         modHelper.Events.Display.MenuChanged += DisplayOnMenuChanged;
-        Patch((DayTimeMoneyBox _) => _.receiveLeftClick(0, 0, false), DayTimeMoneyBox_receiveLeftClick);
-        Patch((DayTimeMoneyBox _) => _.draw(null), DayTimeMoneyBox_draw);
+        Patch((DayTimeMoneyBox d) => d.receiveLeftClick(0, 0, false), DayTimeMoneyBox_receiveLeftClick);
+        Patch((DayTimeMoneyBox d) => d.draw(null), DayTimeMoneyBox_draw);
     }
 
     private void DayTimeMoneyBox_receiveLeftClick()
@@ -39,47 +39,15 @@ public class ModEntry : Hack<ModEntry>
         ifZoomOut.Splice(2, 1, Instructions.Ldc_R4(MinZoom));
 
         var assignDesiredBaseZoomLevelWhenZoomIn = FindCode(
-            Instructions.Ldloc_0(),
-            Instructions.Ldloc_0(),
-            Instructions.Ldc_I4_5(),
-            OpCodes.Rem,
-            OpCodes.Sub,
-            Instructions.Stloc_0(),
-            Instructions.Ldloc_0(),
-            Instructions.Ldc_I4_5(),
-            Instructions.Add(),
-            Instructions.Stloc_0(),
             Instructions.Call_get(typeof(Game1), "options"),
-            Instructions.Ldc_R4(2),  // To modify
-            Instructions.Ldloc_0(),
-            Instructions.Conv_R4(),
-            Instructions.Ldc_R4(100),
-            OpCodes.Div,
-            Instructions.Call(typeof(Math), "Min", typeof(float), typeof(float)),
-            Instructions.Callvirt_set(typeof(Options), "desiredBaseZoomLevel")
+            Instructions.Ldc_R4(2)  // To modify
         );
         var assignDesiredBaseZoomLevelWhenZoomOut = FindCode(
-            Instructions.Ldloc_2(),
-            Instructions.Ldloc_2(),
-            Instructions.Ldc_I4_5(), 
-            OpCodes.Rem, 
-            OpCodes.Sub, 
-            Instructions.Stloc_2(), 
-            Instructions.Ldloc_2(), 
-            Instructions.Ldc_I4_5(), 
-            Instructions.Sub(), 
-            Instructions.Stloc_2(), 
             Instructions.Call_get(typeof(Game1), "options"), 
-            Instructions.Ldc_R4(0.75f),  // To modify
-            Instructions.Ldloc_2(), 
-            Instructions.Conv_R4(), 
-            Instructions.Ldc_R4(100), 
-            OpCodes.Div, 
-            Instructions.Call(typeof(Math), "Max", typeof(float), typeof(float)), 
-            Instructions.Callvirt_set(typeof(Options), "desiredBaseZoomLevel")
+            Instructions.Ldc_R4(0.75f)  // To modify
             );
-        assignDesiredBaseZoomLevelWhenZoomIn.Splice(11, 1, Instructions.Ldc_R4(MaxZoom));
-        assignDesiredBaseZoomLevelWhenZoomOut.Splice(11, 1, Instructions.Ldc_R4(MinZoom));
+        assignDesiredBaseZoomLevelWhenZoomIn.Splice(1, 1, Instructions.Ldc_R4(MaxZoom));
+        assignDesiredBaseZoomLevelWhenZoomOut.Splice(1, 1, Instructions.Ldc_R4(MinZoom));
     }
 
     private void DayTimeMoneyBox_draw()

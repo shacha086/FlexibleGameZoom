@@ -5,6 +5,6 @@
   "UniqueID": "shacha.FlexibleGameZoom",
   "Description": "",
   "EntryDll": "FlexibleGameZoom.dll",
-  "MinimumApiVersion": "4.0.0",
+  "MinimumApiVersion": "3.18.5",
   "UpdateKeys": []
 }
